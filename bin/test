@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+BASH_COMMAND= "set"
+trap 'printf "%s %s\n" + "$BASH_COMMAND" >&2' DEBUG
+
+
 
 BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
@@ -7,8 +11,6 @@ BP_DIR=$(cd "$(dirname "${0:-}")"; cd ..; pwd)
 
 echo "build_dir = ${BUILD_DIR} "
 echo "cache_dir = ${CACHE_DIR}"
-BASH_COMMAND= "set"
-trap 'printf "%s %s\n" + "$BASH_COMMAND" >&2' DEBUG
 
 ### Load dependencies
 

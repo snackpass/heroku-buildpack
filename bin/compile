@@ -7,6 +7,12 @@ set -o errexit    # always exit on error
 set -o pipefail   # don't ignore exit codes when piping output
 unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
+
+
+BASH_COMMAND= "set"
+trap 'printf "%s %s\n" + "$BASH_COMMAND" >&2' DEBUG
+
+
 ### Constants
 
 # This is used by the buildpack stdlib for metrics
@@ -24,9 +30,6 @@ BP_DIR=$(cd "$(dirname "${0:-}")"; cd ..; pwd)
 
 echo "build_dir = ${BUILD_DIR} "
 echo "cache_dir = ${CACHE_DIR}"
-
-BASH_COMMAND= "set"
-trap 'printf "%s %s\n" + "$BASH_COMMAND" >&2' DEBUG
 
 ### Load dependencies
 
