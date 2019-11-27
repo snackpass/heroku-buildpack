@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # bin/test-compile <build-dir> <cache-dir> <env-dir>
 
+
+echo "top of test compile"
 ### Configure environment
 
 set -o errexit    # always exit on error
@@ -22,4 +24,6 @@ export NODE_ENV=${NODE_ENV:-test}
 ### Compile the app
 
 "$BP_DIR/bin/compile" "$1" "$2" "$3"
+
 write_ci_profile "$BP_DIR" "$1"
+echo "after test compile"
