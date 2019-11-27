@@ -227,6 +227,7 @@ restore_cache() {
       done
     fi
   else
+      echo "No cache exists"
     # No cache exists, be silent
     :
   fi
@@ -310,6 +311,7 @@ else
   meta_set "build-step" "save-cache"
   cache_build | output "$LOG_FILE"
   meta_set "build-step" "prune-dependencies"
+
   header "Pruning devDependencies" | output "$LOG_FILE"
   prune_devdependencies | output "$LOG_FILE"
 fi
