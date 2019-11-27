@@ -193,8 +193,12 @@ restore_cache() {
   local cache_status cache_directories restore_cache_start_time
   restore_cache_start_time=$(nowms)
 
+  echo "in restore cache"
+
   cache_status="$(get_cache_status "$CACHE_DIR")"
+  echo "cache status is ${cache_status}"
   cache_directories="$(get_cache_directories "$BUILD_DIR")"
+  echo "cache directories are ${cache_directories}"
 
   if $YARN; then
     if [ -e "$BUILD_DIR/node_modules" ]; then
@@ -246,6 +250,14 @@ build_dependencies() {
   cache_status="$(get_cache_status "$CACHE_DIR")"
   start=$(nowms)
 
+  echo "in build dependencies"
+
+
+  echo "cache status is ${cache_status}"
+
+
+
+
   if $YARN; then
     yarn_node_modules "$BUILD_DIR"
   elif $PREBUILD; then
@@ -269,10 +281,12 @@ header "Installing dependencies" | output "$LOG_FILE"
 build_dependencies | output "$LOG_FILE"
 
 cache_build() {
+
+    echo "in cache build"
   local cache_directories cache_build_start_time
   cache_build_start_time=$(nowms)
   cache_directories="$(get_cache_directories "$BUILD_DIR")"
-
+  echo "cache_directories = ${cache_directories}"
   clear_cache "$CACHE_DIR"
   if ! ${NODE_MODULES_CACHE:-true}; then
     # we've already warned that caching is disabled in the restore step
