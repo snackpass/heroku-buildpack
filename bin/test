@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
+source "$BP_DIR/lib/cache.sh"
 
 BUILD_DIR=${1:-}
 if yarn --version > /dev/null 2>&1; then
   cd "$BUILD_DIR" && yarn test
 else
-  cd "$BUILD_DIR" && npm test && echo $CACHE_DIR
+  cd "$BUILD_DIR" && npm test
 fi
+
+echo $CACHE_DIR
+save_default_cache_directories "$BUILD_DIR" "$CACHE_DIR" "$YARN_CACHE_FOLDER"
+save_custom_cache_directories "$BUILD_DIR" "$CACHE_DIR" "$cache_directories"
+save_signature "$CACHE_DIR"
