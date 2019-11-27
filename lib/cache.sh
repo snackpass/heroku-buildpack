@@ -19,16 +19,18 @@ load_signature() {
 }
 
 get_cache_status() {
-  local cache_dir="$1"
-  if ! ${NODE_MODULES_CACHE:-true}; then
-    echo "disabled"
-  elif ! test -d "$cache_dir/node/"; then
-    echo "not-found"
-  elif [ "$(create_signature)" != "$(load_signature "$cache_dir")" ]; then
-    echo "new-signature"
-  else
+
+  # local cache_dir="$1"
+  # if ! ${NODE_MODULES_CACHE:-true}; then
+  #   echo "disabled"
+  # elif ! test -d "$cache_dir/node/"; then
+  #   echo "not-found"
+  # elif [ "$(create_signature)" != "$(load_signature "$cache_dir")" ]; then
+  #   echo "new-signature"
+  # else
+  #   echo "valid"
+    # fi
     echo "valid"
-  fi
 }
 
 get_cache_directories() {
