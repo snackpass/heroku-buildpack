@@ -9,8 +9,8 @@ unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
 
 
-BASH_COMMAND= "set"
-trap 'printf "%s %s\n" + "$BASH_COMMAND" >&2' DEBUG
+# BASH_COMMAND= "set"
+# trap 'printf "%s %s\n" + "$BASH_COMMAND" >&2' DEBUG
 
 
 ### Constants
