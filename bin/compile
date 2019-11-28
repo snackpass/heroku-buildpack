@@ -322,6 +322,10 @@ prune_devdependencies() {
   fi
 }
 
+
+# run jest one time
+`npm test`
+
 # if we are using yarn
 # and in the new feature
 # and we're using the default cache directories
