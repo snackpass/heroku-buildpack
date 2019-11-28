@@ -8,7 +8,7 @@ set -o pipefail   # don't ignore exit codes when piping output
 unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
 
-
+CACHE_JEST_RUN = "true"
 # BASH_COMMAND= "set"
 # trap 'printf "%s %s\n" + "$BASH_COMMAND" >&2' DEBUG
 
@@ -322,9 +322,11 @@ prune_devdependencies() {
   fi
 }
 
-
-# run jest one time
-`npm test`
+if $CACHE_JEST_RUN; then
+    # run jest one time
+    echo "one time cache for jest"
+    echo `npm test` ||  true
+fi
 
 # if we are using yarn
 # and in the new feature
