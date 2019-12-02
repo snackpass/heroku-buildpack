@@ -10,9 +10,9 @@ unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
 
  if [[ -e "$cache_dir/src/test/jest-cache" ]]; then
-     CACHE_JEST_RUN=true
- else
      CACHE_JEST_RUN=false
+ else
+     CACHE_JEST_RUN=true
  fi
 ### Constants
 
