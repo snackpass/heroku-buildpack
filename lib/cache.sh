@@ -157,6 +157,12 @@ save_custom_cache_directories() {
   echo "Saving ${#cache_directories[@]} cacheDirectories (package.json):"
 
   for cachepath in "${cache_directories[@]}"; do
+      echo "cachepath is $(cachepath)"
+      echo "contents of build dir is"
+      echo `ls $build_dir`
+      echo "contents of cache path is"
+      echo `ls $build_dir/$cachepath`
+
     if [ -e "$build_dir/$cachepath" ]; then
       echo "- $cachepath"
       mkdir -p "$cache_dir/node/cache/$cachepath"
