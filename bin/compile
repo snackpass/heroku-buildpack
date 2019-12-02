@@ -8,14 +8,12 @@ set -o pipefail   # don't ignore exit codes when piping output
 unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
 
-CACHE_JEST_RUN=${RUN_JEST_IN_SETUP:-false}
-echo "check jest setup envs"
-echo $CACHE_JEST_RUN
-echo $RUN_JEST_IN_SETUP
-BASH_COMMAND= "set"
- trap 'printf "%s %s\n" + "$BASH_COMMAND" >&2' DEBUG
 
-
+ if [[ -e "$cache_dir/src/test/jest-cache" ]]; then
+     CACHE_JEST_RUN=true
+ else
+     CACHE_JEST_RUN=false
+ fi
 ### Constants
 
 # This is used by the buildpack stdlib for metrics
