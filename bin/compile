@@ -324,8 +324,8 @@ prune_devdependencies() {
 
 if $CACHE_JEST_RUN; then
     # run jest one time
-    echo "one time cache for jest"
-    echo `npm test` ||  true
+    echo "one time cache builder for jest"
+    echo `npm run test-cache-setup` ||  true
 fi
 
 # if we are using yarn
