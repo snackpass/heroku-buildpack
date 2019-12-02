@@ -12,8 +12,8 @@ CACHE_JEST_RUN=${RUN_JEST_IN_SETUP:-false}
 echo "check jest setup envs"
 echo $CACHE_JEST_RUN
 echo $RUN_JEST_IN_SETUP
-# BASH_COMMAND= "set"
-# trap 'printf "%s %s\n" + "$BASH_COMMAND" >&2' DEBUG
+BASH_COMMAND= "set"
+ trap 'printf "%s %s\n" + "$BASH_COMMAND" >&2' DEBUG
 
 
 ### Constants
