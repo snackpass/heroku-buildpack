@@ -89,11 +89,18 @@ restore_custom_cache_directories() {
     if [ -e "$build_dir/$cachepath" ]; then
       echo "- $cachepath (exists - skipping)"
     else
+        echo "cache dir is"
+        echo "$cache_dir/node/cache/$cachepath"
+
       if [ -e "$cache_dir/node/cache/$cachepath" ]; then
         echo "- $cachepath"
         mkdir -p "$(dirname "$build_dir/$cachepath")"
         mv "$cache_dir/node/cache/$cachepath" "$build_dir/$cachepath"
       else
+          echo "it doesn't exist?"
+          echo `ls -R $cache_dir/node/cache/$cachepath`
+          echo "cache is"
+          echo `ls -R $cache_dir/node/cache/`
         echo "- $cachepath (not cached - skipping)"
       fi
     fi
@@ -157,7 +164,7 @@ save_custom_cache_directories() {
   echo "Saving ${#cache_directories[@]} cacheDirectories (package.json):"
 
   for cachepath in "${cache_directories[@]}"; do
-      echo "cachepath is $(cachepath)"
+      echo "cachepath is $cachepath"
       echo "contents of build dir is"
       echo `ls $build_dir`
       echo "contents of cache path is"
