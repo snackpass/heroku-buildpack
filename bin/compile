@@ -23,6 +23,17 @@ BP_DIR=$(cd "$(dirname "${0:-}")"; cd ..; pwd)
 ls "$CACHE_DIR"
 
 
+echo `ls $CACHE_DIR/node/cache/src/tests/jest_cache`
+echo `ls $CACHE_DIR/node/cache/src/tests/`
+
+if [[ -e "$CACHE_DIR/node/cache/src/tests/jest_cache" ]]; then
+    CACHE_JEST_RUN=false
+else
+    CACHE_JEST_RUN=true
+fi
+
+
+
 echo "build_dir = ${BUILD_DIR} "
 echo "cache_dir = ${CACHE_DIR}"
 
@@ -321,15 +332,6 @@ prune_devdependencies() {
   fi
 }
 
-
-echo `ls $CACHE_DIR/node/cache/src/tests/jest_cache`
-echo `ls $CACHE_DIR/node/cache/src/tests/`
-
-if [[ -e "$CACHE_DIR/node/cache/src/tests/jest_cache" ]]; then
-    CACHE_JEST_RUN=false
-else
-    CACHE_JEST_RUN=true
-fi
 
 if $CACHE_JEST_RUN; then
     # run jest one time
