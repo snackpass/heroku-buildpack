@@ -20,15 +20,12 @@ BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 BP_DIR=$(cd "$(dirname "${0:-}")"; cd ..; pwd)
-ls "$CACHE_DIR"
 
-
-echo `ls $CACHE_DIR/node/cache/src/tests/jest_cache`
-echo `ls $CACHE_DIR/node/cache/src/tests/`
 
 if [[ -e "$CACHE_DIR/node/cache/src/tests/jest_cache" ]]; then
     CACHE_JEST_RUN=false
 else
+    echo "cannot find jest_cache in cache"
     CACHE_JEST_RUN=true
 fi
 
@@ -36,10 +33,6 @@ fi
 
 echo "build_dir = ${BUILD_DIR} "
 echo "cache_dir = ${CACHE_DIR}"
-
-if ! [ -e "$BUILD_DIR/jest_cache" ]; then
-    `mkdir $BUILD_DIR/jest_cache`
-fi
 
 ### Load dependencies
 

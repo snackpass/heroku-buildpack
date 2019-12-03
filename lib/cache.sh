@@ -97,9 +97,7 @@ restore_custom_cache_directories() {
         mkdir -p "$(dirname "$build_dir/$cachepath")"
         mv "$cache_dir/node/cache/$cachepath" "$build_dir/$cachepath"
       else
-          echo "it doesn't exist?"
-          echo `ls -R $cache_dir/node/cache/$cachepath`
-          echo "cache is"
+          #I think cache is on an pipeline level? Other builds can bust the cache
         echo "- $cachepath (not cached - skipping)"
       fi
     fi
@@ -132,8 +130,6 @@ save_default_cache_directories() {
       mkdir -p "$cache_dir/node/cache/node_modules"
 
       cp -a "$build_dir/node_modules" "$(dirname "$cache_dir/node/cache/node_modules")"
-      echo "copied to cache"
-      echo `ls -lrt $cache_dir/*`
     else
       # this can happen if there are no dependencies
       mcount "cache.no-node-modules"
@@ -163,11 +159,6 @@ save_custom_cache_directories() {
   echo "Saving ${#cache_directories[@]} cacheDirectories (package.json):"
 
   for cachepath in "${cache_directories[@]}"; do
-      echo "cachepath is $cachepath"
-      echo "contents of build dir is"
-      echo `ls $build_dir`
-      echo "contents of cache path is"
-      echo `ls $build_dir/$cachepath`
 
     if [ -e "$build_dir/$cachepath" ]; then
       echo "- $cachepath"
