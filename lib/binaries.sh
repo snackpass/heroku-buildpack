@@ -16,7 +16,7 @@ resolve() {
     # require a proxy for all HTTP requests, so the NO_PROXY ENV var should be set outside the
     # script by the user
     # see testAvoidHttpProxyVersionResolutionIssue test and README
-    if output=$($RESOLVE "$binary" "$versionRequirement"); then
+      if output=$($RESOLVE "$binary" "$versionRequirement"); then
       echo "$output"
       return 0
     # don't retry if we get a negative result

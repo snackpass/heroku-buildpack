@@ -58,7 +58,7 @@ run_build_script() {
   local has_build_script has_heroku_build_script
 
   has_build_script=$(has_script "$build_dir/package.json" "build")
-  has_heroku_build_script=$(has_script "$build_dir/package.json" "heroku-postbuild")
+  has_heroku_build_script= false # $(has_script "$build_dir/package.json" "heroku-postbuild")
 
   if [[ "$has_heroku_build_script" == "true" ]] && [[ "$has_build_script" == "true" ]]; then
     echo "Detected both \"build\" and \"heroku-postbuild\" scripts"
