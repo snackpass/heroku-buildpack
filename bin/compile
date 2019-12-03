@@ -8,12 +8,6 @@ set -o pipefail   # don't ignore exit codes when piping output
 unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
 
-
-if [[ -e "$cache_dir/node/cache/src/tests/jest_cache" ]]; then
-     CACHE_JEST_RUN=false
- else
-     CACHE_JEST_RUN=true
- fi
 ### Constants
 
 # This is used by the buildpack stdlib for metrics
@@ -326,6 +320,13 @@ prune_devdependencies() {
     npm_prune_devdependencies "$BUILD_DIR"
   fi
 }
+
+
+if [[ -e "$cache_dir/node/cache/src/tests/jest_cache" ]]; then
+    CACHE_JEST_RUN=false
+else
+    CACHE_JEST_RUN=true
+fi
 
 if $CACHE_JEST_RUN; then
     # run jest one time
