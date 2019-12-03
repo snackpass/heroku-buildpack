@@ -100,7 +100,7 @@ restore_custom_cache_directories() {
           echo "it doesn't exist?"
           echo `ls -R $cache_dir/node/cache/$cachepath`
           echo "cache is"
-          echo `ls -R $cache_dir/node/cache/`
+          echo `ls -aR $cache_dir/node/`
         echo "- $cachepath (not cached - skipping)"
       fi
     fi
@@ -174,6 +174,7 @@ save_custom_cache_directories() {
       echo "- $cachepath"
       mkdir -p "$cache_dir/node/cache/$cachepath"
       cp -a "$build_dir/$cachepath" "$(dirname "$cache_dir/node/cache/$cachepath")"
+      echo "cached to $cache_dir/node/cache/$cachepath"
     else
       echo "- $cachepath (nothing to cache)"
     fi
