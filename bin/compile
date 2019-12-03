@@ -62,8 +62,10 @@ source "$BP_DIR/lib/builddata.sh"
 
 export PATH="$BUILD_DIR/.heroku/node/bin:$BUILD_DIR/.heroku/yarn/bin":$PATH
 
+printenv
 
-if [[ $CLEAR_CI_CACHE == true ]]; then
+
+if ${CLEAR_CI_CACHE:=false}; then
     echo "Busting the cache"
     rm -rf "$CACHE_DIR/node"
 fi
