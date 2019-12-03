@@ -22,18 +22,6 @@ ENV_DIR=${3:-}
 BP_DIR=$(cd "$(dirname "${0:-}")"; cd ..; pwd)
 
 
-if [[ $CLEAR_CI_CACHE == true ]]; then
-    echo "Busting the cache"
-    rm -rf "$CACHE_DIR/node"
-fi
-
-if [[ -e "$CACHE_DIR/node/cache/src/tests/jest_cache" ]]; then
-    CACHE_JEST_RUN=false
-else
-    echo "cannot find jest_cache in cache"
-    CACHE_JEST_RUN=true
-fi
-
 
 
 echo "build_dir = ${BUILD_DIR} "
@@ -73,6 +61,21 @@ source "$BP_DIR/lib/features.sh"
 source "$BP_DIR/lib/builddata.sh"
 
 export PATH="$BUILD_DIR/.heroku/node/bin:$BUILD_DIR/.heroku/yarn/bin":$PATH
+
+
+if [[ $CLEAR_CI_CACHE == true ]]; then
+    echo "Busting the cache"
+    rm -rf "$CACHE_DIR/node"
+fi
+
+if [[ -e "$CACHE_DIR/node/cache/src/tests/jest_cache" ]]; then
+    CACHE_JEST_RUN=false
+else
+    echo "cannot find jest_cache in cache"
+    CACHE_JEST_RUN=true
+fi
+
+
 
 LOG_FILE=$(mktemp -t node-build-log.XXXXX)
 echo "" > "$LOG_FILE"
