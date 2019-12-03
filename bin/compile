@@ -22,7 +22,7 @@ ENV_DIR=${3:-}
 BP_DIR=$(cd "$(dirname "${0:-}")"; cd ..; pwd)
 
 
-if [[ $CLEAR_CI_CACHE ]]; then
+if [[ $CLEAR_CI_CACHE == true ]]; then
     echo "Busting the cache"
     rm -rf "$CACHE_DIR/node"
 fi
