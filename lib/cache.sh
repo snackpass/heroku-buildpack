@@ -100,7 +100,7 @@ restore_custom_cache_directories() {
           echo "it doesn't exist?"
           echo `ls -R $cache_dir/node/cache/$cachepath`
           echo "cache is"
-          echo `ls -aR $cache_dir/node/`
+          ls "-R $cache_dir/node/cache"
         echo "- $cachepath (not cached - skipping)"
       fi
     fi
