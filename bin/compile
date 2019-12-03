@@ -322,7 +322,7 @@ prune_devdependencies() {
 }
 
 echo "this dir should be here"
-echo `ls $CACHE_DIR/node/cache/src/tests/`
+
 
 
 if [[ -e "$CACHE_DIR/node/cache/src/tests/jest_cache" ]]; then
