@@ -98,7 +98,7 @@ trap 'handle_failure' ERR
 
 if $CLEAR_CACHE; then
     echo "Busting the cache"
-    clear_cache
+    rm -rf "$CACHE_DIR/node"
 fi
 
 ### Initalize metadata store
