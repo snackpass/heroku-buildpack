@@ -312,7 +312,7 @@ header "Installing dependencies" | output "$LOG_FILE"
 build_dependencies | output "$LOG_FILE"
 
 cache_build() {
-    if ${CACHE_JEST_RUN}; then
+
      echo "in cache build"
      local cache_directories cache_build_start_time
      cache_build_start_time=$(nowms)
@@ -330,11 +330,8 @@ cache_build() {
         header "Caching build"
         save_custom_cache_directories "$BUILD_DIR" "$CACHE_DIR" "$cache_directories"
       fi
+      save_signature "$CACHE_DIR"
       meta_time "save-cache-time" "$cache_build_start_time"
-  else
-    echo "not saving build because we didn't bust cache"
-  fi
-    save_signature "$CACHE_DIR"
 
 
 }
