@@ -321,6 +321,8 @@ prune_devdependencies() {
   fi
 }
 
+echo "this dir should be here"
+ls "$cache_dir/node/cache/src/tests/"
 
 if [[ -e "$cache_dir/node/cache/src/tests/jest_cache" ]]; then
     CACHE_JEST_RUN=false
