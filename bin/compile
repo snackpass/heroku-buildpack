@@ -21,7 +21,6 @@ CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 BP_DIR=$(cd "$(dirname "${0:-}")"; cd ..; pwd)
 
-
 if [[ -e "$CACHE_DIR/node/cache/src/tests/jest_cache" ]]; then
     CACHE_JEST_RUN=false
 else
@@ -74,6 +73,8 @@ echo "" > "$LOG_FILE"
 
 build_start_time=$(nowms)
 
+
+
 ### Handle errors
 
 handle_failure() {
@@ -93,6 +94,12 @@ handle_failure() {
   failure_message | output "$LOG_FILE"
 }
 trap 'handle_failure' ERR
+
+
+if $CLEAR_CACHE; then
+    echo "Busting the cache"
+    clear_cache
+fi
 
 ### Initalize metadata store
 # Create the metadata store
