@@ -62,21 +62,6 @@ source "$BP_DIR/lib/builddata.sh"
 
 export PATH="$BUILD_DIR/.heroku/node/bin:$BUILD_DIR/.heroku/yarn/bin":$PATH
 
-printenv
-
-
-if ${CLEAR_CI_CACHE:=false}; then
-    echo "Busting the cache"
-    rm -rf "$CACHE_DIR/node"
-fi
-
-if [[ -e "$CACHE_DIR/node/cache/src/tests/jest_cache" ]]; then
-    CACHE_JEST_RUN=false
-else
-    echo "cannot find jest_cache in cache"
-    CACHE_JEST_RUN=true
-fi
-
 
 
 LOG_FILE=$(mktemp -t node-build-log.XXXXX)
@@ -159,6 +144,24 @@ cd "$BUILD_DIR"
 create_env # can't pipe the whole thing because piping causes subshells, preventing exports
 list_node_config | output "$LOG_FILE"
 create_build_env
+
+printenv
+
+
+if ${CLEAR_CI_CACHE:=false}; then
+    echo "Busting the cache"
+    rm -rf "$CACHE_DIR/node"
+fi
+
+if [[ -e "$CACHE_DIR/node/cache/src/tests/jest_cache" ]]; then
+    CACHE_JEST_RUN=false
+else
+    echo "cannot find jest_cache in cache"
+    CACHE_JEST_RUN=true
+fi
+
+
+
 
 ### Configure package manager cache directories
 [ ! "$YARN_CACHE_FOLDER" ] && YARN_CACHE_FOLDER=$(mktemp -d -t yarncache.XXXXX)
