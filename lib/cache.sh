@@ -109,8 +109,8 @@ restore_custom_cache_directories() {
 clear_cache() {
   local cache_dir="$1"
   rm -rf "$cache_dir/node"
-  mkdir -p "$cache_dir/node"
-  mkdir -p "$cache_dir/node/cache"
+#  mkdir -p "$cache_dir/node"
+#  mkdir -p "$cache_dir/node/cache"
 }
 
 save_default_cache_directories() {
