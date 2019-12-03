@@ -27,9 +27,9 @@ create_default_env() {
 
 create_build_env() {
   # if the user hasn't set NODE_OPTIONS, increase the default amount of space
-  # that a node process can address to match that of the build dynos (2.5GB)
+  # that a node process can address to match that of the build dynos (2.5GB) performance l are actually 14000 14GB
   if [[ -z $NODE_OPTIONS ]]; then
-    export NODE_OPTIONS="--max_old_space_size=2560"
+    export NODE_OPTIONS="--max_old_space_size=14000"
   fi
 }
 
