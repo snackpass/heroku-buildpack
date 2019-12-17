@@ -54,23 +54,26 @@ run_prebuild_script() {
 }
 
 run_build_script() {
-  local build_dir=${1:-}
-  local has_build_script has_heroku_build_script
+  # local build_dir=${1:-}
+  # local has_build_script has_heroku_build_script
 
-  has_build_script=$(has_script "$build_dir/package.json" "build")
-  has_heroku_build_script="false"
+  # has_build_script=$(has_script "$build_dir/package.json" "build")
+  # has_heroku_build_script="false"
 
-  if [[ "$has_heroku_build_script" == "true" ]] && [[ "$has_build_script" == "true" ]]; then
-    echo "Detected both \"build\" and \"heroku-postbuild\" scripts"
-    mcount "scripts.heroku-postbuild-and-build"
-    run_if_present "$build_dir" 'heroku-postbuild'
-  elif [[ "$has_heroku_build_script" == "true" ]]; then
-    mcount "scripts.heroku-postbuild"
-    run_if_present "$build_dir" 'heroku-postbuild'
-  elif [[ "$has_build_script" == "true" ]]; then
-    mcount "scripts.build"
-    run_if_present "$build_dir" 'build'
-  fi
+  # if [[ "$has_heroku_build_script" == "true" ]] && [[ "$has_build_script" == "true" ]]; then
+  #   echo "Detected both \"build\" and \"heroku-postbuild\" scripts - not running"
+  #   #mcount "scripts.heroku-postbuild-and-build"
+  #   #run_if_present "$build_dir" 'heroku-postbuild'
+  # elif [[ "$has_heroku_build_script" == "true" ]]; then
+  #   #mcount "scripts.heroku-postbuild"
+  #     #run_if_present "$build_dir" 'heroku-postbuild'
+  #     echo "skipping build"
+  # elif [[ "$has_build_script" == "true" ]]; then
+  #   mcount "scripts.build"
+  #   run_if_present "$build_dir" 'build'
+    # fi
+
+    echo "bypassing build scripts"
 }
 
 log_build_scripts() {
