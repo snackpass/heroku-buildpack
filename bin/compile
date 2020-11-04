@@ -62,7 +62,7 @@ source "$BP_DIR/lib/builddata.sh"
 
 export PATH="$BUILD_DIR/.heroku/node/bin:$BUILD_DIR/.heroku/yarn/bin":$PATH
 
-
+export JEST_CACHE_DIR=${JEST_CACHE_DIR:-"tests/jest_cache"}
 
 LOG_FILE=$(mktemp -t node-build-log.XXXXX)
 echo "" > "$LOG_FILE"
@@ -153,7 +153,7 @@ if ${CLEAR_CI_CACHE:=false}; then
     rm -rf "$CACHE_DIR/node"
 fi
 
-if [[ -e "$CACHE_DIR/node/cache/src/tests/jest_cache" ]]; then
+if [[ -e "$CACHE_DIR/node/cache/$JEST_CACHE_DIR" ]]; then
     CACHE_JEST_RUN=false
 else
     echo "cannot find jest_cache in cache"
