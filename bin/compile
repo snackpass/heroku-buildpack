@@ -63,7 +63,7 @@ source "$BP_DIR/lib/builddata.sh"
 export PATH="$BUILD_DIR/.heroku/node/bin:$BUILD_DIR/.heroku/yarn/bin":$PATH
 
 export JEST_CACHE_DIR=${JEST_CACHE_DIR:-"tests/jest_cache"}
-export SKIP_JEST_CACHE_RUN=${SKIP_JEST_CACHE_RUN:-false}
+export SKIP_JEST_CACHE_RUN=${SKIP_JEST_CACHE_RUN:-true}
 
 
 LOG_FILE=$(mktemp -t node-build-log.XXXXX)
